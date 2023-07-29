@@ -30,17 +30,7 @@ app.get('/getTypeOfPlane', async (req, res) => {
 });
 
 
-app.get('/getAirportAprons', async (req, res) => { 
-  try {
-    const connection = await pool.getConnection();
-    const [rows] = await connection.query('SELECT * FROM airport_apron;');
-    connection.release();
-    res.json(rows);
-  } catch (err) {
-    console.error('Error executing query', err);
-    res.status(500).json({ error: 'Internal Server Error' });
-  }
-});
+
 app.get('/getAirportAprons', async (req, res) => { 
   try {
     const connection = await pool.getConnection();
