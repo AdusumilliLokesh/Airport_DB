@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { VerticalTab, VerticalTabs } from './VerticalTabs';
 function App() {
-  
+
   const [planes, setPlanes] = useState([]);
   const itemsPerPage = 5; // Set the number of items to show per page
   const [currentPage, setCurrentPage] = useState(1);
@@ -26,79 +26,79 @@ function App() {
       .then(response => setPlanes(response.data))
       .catch(error => console.error('Error fetching data', error));
   }, []);
-  
+
   return (
     <div>
-   
+
       <div>
-      <h1>Vertical Tabs Example</h1>
-      <VerticalTabs>
-        <VerticalTab label="Aprons">
-          <div>
-            <h2>Content of Tab 1</h2>
-            <p>This is the content of Tab 1.</p>
-          </div>
-        </VerticalTab>
-        <VerticalTab label="Models">
-          <div>
-            <h2>Content of Tab 2</h2>
-            <p>This is the content of Tab 2.</p>
-          </div>
-        </VerticalTab>
-        <VerticalTab label="Plane Details">
-          <div>
-          <div>
-      <h1>Planes Data</h1>
-      <table style={{ borderCollapse: 'collapse', width: 'fit-content' }}>
-        <thead>
-          <tr>
-            <th style={tableHeaderStyle}>Model</th>
-            <th style={tableHeaderStyle}>Capacity</th>
-            <th style={tableHeaderStyle}>Weight</th>
-          </tr>
-        </thead>
-        <tbody>
-        {currentItems.map((plane, index) => (
-            <tr key={index}>
-              <td style={tableCellStyle}>{plane.Model}</td>
-              <td style={tableCellStyle}>{plane.Capacity}</td>
-              <td style={tableCellStyle}>{plane.Weight}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      
-    </div>
-    
-    <div>
-        {Array.from({ length: totalPages }, (_, index) => index + 1).map((pageNumber) => (
-          <button
-            key={pageNumber}
-            onClick={() => handlePageChange(pageNumber)}
-            disabled={pageNumber === currentPage}
-          >
-            {pageNumber}
-          </button>
-        ))}
+        <h1>Airport Management System</h1>
+        <VerticalTabs>
+          <VerticalTab label="Aprons">
+            <div>
+              <h2>Content of Tab 1</h2>
+              <p>This is the content of Tab 1.</p>
+            </div>
+          </VerticalTab>
+          <VerticalTab label="Models">
+            <div>
+              <h2>Content of Tab 2</h2>
+              <p>This is the content of Tab 2.</p>
+            </div>
+          </VerticalTab>
+          <VerticalTab label="Plane Details">
+            <div>
+              <div>
+                <h1>Planes Data</h1>
+                <table style={{ borderCollapse: 'collapse', width: 'fit-content' }}>
+                  <thead>
+                    <tr>
+                      <th style={tableHeaderStyle}>Model</th>
+                      <th style={tableHeaderStyle}>Capacity</th>
+                      <th style={tableHeaderStyle}>Weight</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {currentItems.map((plane, index) => (
+                      <tr key={index}>
+                        <td style={tableCellStyle}>{plane.Model}</td>
+                        <td style={tableCellStyle}>{plane.Capacity}</td>
+                        <td style={tableCellStyle}>{plane.Weight}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+
+              </div>
+
+              <div>
+                {Array.from({ length: totalPages }, (_, index) => index + 1).map((pageNumber) => (
+                  <button
+                    key={pageNumber}
+                    onClick={() => handlePageChange(pageNumber)}
+                    disabled={pageNumber === currentPage}
+                  >
+                    {pageNumber}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </VerticalTab>
+          <VerticalTab label="Owners">
+            <div>
+              <h2>Content of Tab 3</h2>
+              <p>This is the content of Tab 3.</p>
+            </div>
+          </VerticalTab>
+          <VerticalTab label="Employees">
+            <div>
+              <h2>Content of Tab 3</h2>
+              <p>This is the content of Tab 3.</p>
+            </div>
+          </VerticalTab>
+        </VerticalTabs>
       </div>
-          </div>
-        </VerticalTab>
-        <VerticalTab label="Owners">
-          <div>
-            <h2>Content of Tab 3</h2>
-            <p>This is the content of Tab 3.</p>
-          </div>
-        </VerticalTab>
-        <VerticalTab label="Employees">
-          <div>
-            <h2>Content of Tab 3</h2>
-            <p>This is the content of Tab 3.</p>
-          </div>
-        </VerticalTab>
-      </VerticalTabs>
-    </div> 
     </div>
-    
+
   );
 }
 // Styles for table header cells
