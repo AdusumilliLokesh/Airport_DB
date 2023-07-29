@@ -1,0 +1,14 @@
+.planeheader{
+    border: '1px solid black';
+    padding: '8px';
+    textAlign: 'left';
+    fontWeight: 'bold';
+}
+.planecell{
+    border: '1px solid black';
+    padding: '8px';
+}
+.planeAlign{
+    borderCollapse: 'collapse';
+     width: 'fit-content' ;
+}
