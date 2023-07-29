@@ -33,15 +33,13 @@ const ApronDetails = ({ children }) => {
     return (
         <div>
             <div>
-                <h1>aprons Data</h1>
+                <h1>Aprons Data</h1>
                 <table className="apronAlign">
                     <thead>
                         <tr>
-                            <th className="apronheader">AP_number</th>
+                            <th className="apronheader">Apron Number</th>
                             <th className="apronheader">Capacity</th>
-                            <th className="apronheader">AP_location</th>
-                            
-                           
+                            <th className="apronheader">Apron Location</th>
                         </tr>
                     </thead>
                     <tbody>

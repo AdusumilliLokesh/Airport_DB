@@ -33,14 +33,14 @@ const ModelsData = ({ children }) => {
     return (
         <div>
             <div>
-                <h1>models Data</h1>
+                <h1>Models Data</h1>
                 <table className="modelAlign">
                     <thead>
                         <tr>
-                            <th className="modelheader">Registration_no</th>
+                            <th className="modelheader">Registration No</th>
                             <th className="modelheader">Manufacturer</th>
                             <th className="modelheader">Model</th>
-                            <th className="modelheader">AP_Number</th>
+                            <th className="modelheader">Apron Number</th>
                             
                         </tr>
                     </thead>

@@ -38,7 +38,7 @@
 }
 
 .aligntable { 
-  borderCollapse: 'collapse';
+  border-collapse: 'collapse';
   width: 100%;
 }
 
@@ -50,4 +50,15 @@
 
 .tr:nth-child(even) {
   background-color: #f2f2f2;
+}
+.align_title{
+  text-align: center;
+    color: #3f51b5;
+    width:80%;
+}
+.alignsearch{
+  display: flex;
+}
+.alignbgpage{
+  background-color: #E9F5FB;
 }

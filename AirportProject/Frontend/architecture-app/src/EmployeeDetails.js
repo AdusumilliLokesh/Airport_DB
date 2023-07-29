@@ -33,7 +33,7 @@ const EmployeeDetails = ({ children }) => {
     return (
         <div>
             <div>
-                <h1>employees Data</h1>
+                <h1>Employees Data</h1>
                 <table className="employeeAlign">
                     <thead>
                         <tr>

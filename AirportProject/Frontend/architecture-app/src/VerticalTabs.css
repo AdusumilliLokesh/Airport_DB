@@ -6,16 +6,18 @@
     display: flex;
     flex-direction: column;
     width: 150px; /* Adjust as per your requirement */
+    color: black;
+    background-color: #33A1DE;
   }
-  
+  .vertical-tab.active,.vertical-tab.hover{
+    background-color: #90DAFF	;
+  }
   .vertical-tab {
     padding: 10px;
     cursor: pointer;
   }
   
-  .vertical-tab.active {
-    background-color: #f0f0f0;
-  }
+ 
   
   .vertical-tabs-content {
     flex: 1;

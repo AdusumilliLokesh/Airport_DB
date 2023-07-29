@@ -33,14 +33,14 @@ const OwnerDetails = ({ children }) => {
     return (
         <div>
             <div>
-                <h1>owners Data</h1>
+                <h1>Owners Data</h1>
                 <table className="ownerAlign">
                     <thead>
                         <tr>
-                            <th className="ownerheader">owner_id</th>
-                            <th className="ownerheader">Registration_no</th>
-                            <th className="ownerheader">Purchase_date</th>
-                            <th className="ownerheader">type_of_owner</th>
+                            <th className="ownerheader">Owner ID</th>
+                            <th className="ownerheader">Registration Number</th>
+                            <th className="ownerheader">Purchase Date</th>
+                            <th className="ownerheader">Type of Owner</th>
                            
                         </tr>
                     </thead>
