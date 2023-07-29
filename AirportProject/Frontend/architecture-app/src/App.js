@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
+import { VerticalTab, VerticalTabs } from './VerticalTabs';
 function App() {
+  
   const [planes, setPlanes] = useState([]);
   const itemsPerPage = 5; // Set the number of items to show per page
   const [currentPage, setCurrentPage] = useState(1);
@@ -18,10 +19,7 @@ function App() {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-  // Change the current page number
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
+
   useEffect(() => {
     // Fetch data from the backend when the component mounts
     axios.get('/architecture') // The proxy is set to 'http://localhost:5000' in package.json
@@ -31,7 +29,25 @@ function App() {
   
   return (
     <div>
-    <div>
+   
+      <div>
+      <h1>Vertical Tabs Example</h1>
+      <VerticalTabs>
+        <VerticalTab label="Aprons">
+          <div>
+            <h2>Content of Tab 1</h2>
+            <p>This is the content of Tab 1.</p>
+          </div>
+        </VerticalTab>
+        <VerticalTab label="Models">
+          <div>
+            <h2>Content of Tab 2</h2>
+            <p>This is the content of Tab 2.</p>
+          </div>
+        </VerticalTab>
+        <VerticalTab label="Plane Details">
+          <div>
+          <div>
       <h1>Planes Data</h1>
       <table style={{ borderCollapse: 'collapse', width: 'fit-content' }}>
         <thead>
@@ -65,8 +81,24 @@ function App() {
           </button>
         ))}
       </div>
-  
+          </div>
+        </VerticalTab>
+        <VerticalTab label="Owners">
+          <div>
+            <h2>Content of Tab 3</h2>
+            <p>This is the content of Tab 3.</p>
+          </div>
+        </VerticalTab>
+        <VerticalTab label="Employees">
+          <div>
+            <h2>Content of Tab 3</h2>
+            <p>This is the content of Tab 3.</p>
+          </div>
+        </VerticalTab>
+      </VerticalTabs>
+    </div> 
     </div>
+    
   );
 }
 // Styles for table header cells
