@@ -16,7 +16,7 @@ function App() {
     // For example, you can filter data or make API calls based on the search query.
   };
   return (
-    <div>
+    <div className='alignbgpage'>
 
       <div >
         <div className='alignsearch'>
