@@ -2,6 +2,10 @@ import React from 'react';
 
 import { VerticalTab, VerticalTabs } from './VerticalTabs';
 import { PlaneDetails } from './PlaneDetails';
+import { EmployeeDetails } from './EmployeeDetails';
+import { OwnerDetails } from './OwnerDetails';
+import { ApronDetails } from './ApronDetails';
+import { ModelsData } from './ModelsData';
 function App() {
 
   
@@ -13,14 +17,12 @@ function App() {
         <VerticalTabs>
           <VerticalTab label="Aprons">
             <div>
-              <h2>Content of Tab 1</h2>
-              <p>This is the content of Tab 1.</p>
+              <ApronDetails></ApronDetails>
             </div>
           </VerticalTab>
           <VerticalTab label="Models">
             <div>
-              <h2>Content of Tab 2</h2>
-              <p>This is the content of Tab 2.</p>
+              <ModelsData></ModelsData>
             </div>
           </VerticalTab>
           <VerticalTab label="Plane Details">
@@ -30,14 +32,12 @@ function App() {
           </VerticalTab>
           <VerticalTab label="Owners">
             <div>
-              <h2>Content of Tab 3</h2>
-              <p>This is the content of Tab 3.</p>
+              <OwnerDetails></OwnerDetails>
             </div>
           </VerticalTab>
           <VerticalTab label="Employees">
             <div>
-              <h2>Content of Tab 3</h2>
-              <p>This is the content of Tab 3.</p>
+              <EmployeeDetails></EmployeeDetails>
             </div>
           </VerticalTab>
         </VerticalTabs>

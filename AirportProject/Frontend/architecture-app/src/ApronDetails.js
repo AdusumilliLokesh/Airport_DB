@@ -1,21 +1,21 @@
 
-import './PlaneDetails.css'; // Import the CSS file for styling
+import './ApronDetails.css'; // Import the CSS file for styling
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 
-const PlaneDetails = ({ children }) => {
-    const [planes, setPlanes] = useState([]);
+const ApronDetails = ({ children }) => {
+    const [aprons, setapron] = useState([]);
     const itemsPerPage = 10; // Set the number of items to show per page
     const [currentPage, setCurrentPage] = useState(1);
 
     // Calculate the total number of pages
-    const totalPages = Math.ceil(planes.length / itemsPerPage);
+    const totalPages = Math.ceil(aprons.length / itemsPerPage);
 
     // Get the current items to display based on the current page number
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = planes.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = aprons.slice(indexOfFirstItem, indexOfLastItem);
 
     // Handle changing the page
     const handlePageChange = (pageNumber) => {
@@ -24,8 +24,8 @@ const PlaneDetails = ({ children }) => {
 
     useEffect(() => {
         // Fetch data from the backend when the component mounts
-        axios.get('/getTypeOfPlane') // The proxy is set to 'http://localhost:5000' in package.json
-            .then(response => setPlanes(response.data))
+        axios.get('/getAirportAprons') // The proxy is set to 'http://localhost:5000' in package.json
+            .then(response => setapron(response.data))
             .catch(error => console.error('Error fetching data', error));
     }, []);
 
@@ -33,21 +33,23 @@ const PlaneDetails = ({ children }) => {
     return (
         <div>
             <div>
-                <h1>Planes Data</h1>
-                <table className="planeAlign">
+                <h1>aprons Data</h1>
+                <table className="apronAlign">
                     <thead>
                         <tr>
-                            <th className="planeheader">Model</th>
-                            <th className="planeheader">Capacity</th>
-                            <th className="planeheader">Weight</th>
+                            <th className="apronheader">AP_number</th>
+                            <th className="apronheader">Capacity</th>
+                            <th className="apronheader">AP_location</th>
+                            
+                           
                         </tr>
                     </thead>
                     <tbody>
-                        {currentItems.map((plane, index) => (
+                        {currentItems.map((apron, index) => (
                             <tr key={index}>
-                                <td className="planecell">{plane.Model}</td>
-                                <td className="planecell">{plane.Capacity}</td>
-                                <td className="planecell">{plane.Weight}</td>
+                                <td className="aproncell">{apron.AP_number}</td>
+                                <td className="aproncell">{apron.Capacity}</td>
+                                <td className="aproncell">{apron.AP_location}</td>
                             </tr>
                         ))}
                     </tbody>
@@ -70,4 +72,4 @@ const PlaneDetails = ({ children }) => {
     );
 };
 
-export { PlaneDetails };
+export { ApronDetails };

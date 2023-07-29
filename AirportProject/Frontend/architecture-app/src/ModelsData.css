@@ -1,0 +1,14 @@
+.modelheader{
+    border: '1px solid black';
+    padding: '8px';
+    textAlign: 'left';
+    fontWeight: 'bold';
+}
+.modelcell{
+    border: '1px solid black';
+    padding: '8px';
+}
+.modelAlign{
+    borderCollapse: 'collapse';
+     width: 'fit-content' ;
+}
