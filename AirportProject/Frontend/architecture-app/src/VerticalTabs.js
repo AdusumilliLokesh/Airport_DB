@@ -11,7 +11,7 @@ const VerticalTab = ({ label, children }) => {
 };
 
 const VerticalTabs = ({ children }) => {
-  const [activeTab, setActiveTab] = useState(0);
+  const [activeTab, setActiveTab] = useState(-1);
 
   const handleTabClick = (index) => {
     setActiveTab(index);
