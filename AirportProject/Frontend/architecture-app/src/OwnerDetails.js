@@ -40,7 +40,7 @@ const OwnerDetails = ({ children }) => {
                             <th className="ownerheader">Owner ID</th>
                             <th className="ownerheader">Registration Number</th>
                             <th className="ownerheader">Purchase Date</th>
-                            <th className="ownerheader">Type of Owner</th>
+                            
                            
                         </tr>
                     </thead>
@@ -48,9 +48,9 @@ const OwnerDetails = ({ children }) => {
                         {currentItems.map((owner, index) => (
                             <tr key={index}>
                                 <td className="ownercell">{owner.owner_id}</td>
-                                <td className="ownercell">{owner.Registration_no}</td>
+                                <td className="ownercell">{owner.Registration_number}</td>
                                 <td className="ownercell">{owner.Purchase_date}</td>
-                                <td className="ownercell">{owner.type_of_owner}</td>
+                                
                             </tr>
                         ))}
                     </tbody>

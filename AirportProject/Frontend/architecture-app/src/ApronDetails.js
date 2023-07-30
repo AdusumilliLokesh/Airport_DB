@@ -39,15 +39,17 @@ const ApronDetails = ({ children }) => {
                         <tr>
                             <th className="apronheader">Apron Number</th>
                             <th className="apronheader">Capacity</th>
-                            <th className="apronheader">Apron Location</th>
+                            <th className="apronheader">Apron Status</th>
+                            <th className="apronheader">Apron Type</th>
                         </tr>
                     </thead>
                     <tbody>
                         {currentItems.map((apron, index) => (
                             <tr key={index}>
-                                <td className="aproncell">{apron.AP_number}</td>
-                                <td className="aproncell">{apron.Capacity}</td>
-                                <td className="aproncell">{apron.AP_location}</td>
+                                <td className="aproncell">{apron.Apron_number}</td>
+                                <td className="aproncell">{apron.Aircraft_Capacity}</td>
+                                <td className="aproncell">{apron.Apron_status}</td>
+                                <td className="aproncell">{apron.Apron_type}</td>
                             </tr>
                         ))}
                     </tbody>

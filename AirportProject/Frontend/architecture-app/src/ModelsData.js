@@ -41,17 +41,19 @@ const ModelsData = ({ children }) => {
                             <th className="modelheader">Manufacturer</th>
                             <th className="modelheader">Model</th>
                             <th className="modelheader">Apron Number</th>
-                            
+                            <th className="modelheader">Last_Maintenance_Date</th>
+                            <th className="modelheader">Maintenance_Status</th>
                         </tr>
                     </thead>
                     <tbody>
                         {currentItems.map((model, index) => (
                             <tr key={index}>
-                                <td className="modelcell">{model.Registration_no}</td>
+                                <td className="modelcell">{model.Registration_number}</td>
                                 <td className="modelcell">{model.Manufacturer}</td>
                                 <td className="modelcell">{model.Model}</td>
-                                <td className="modelcell">{model.AP_Number}</td>
-                                
+                                <td className="modelcell">{model.Apron_number}</td>
+                                <td className="modelcell">{model.Last_Maintenance_Date}</td>
+                                <td className="modelcell">{model.Maintenance_Status}</td>
                             </tr>
                         ))}
                     </tbody>

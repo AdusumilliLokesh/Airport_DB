@@ -38,16 +38,20 @@ const PlaneDetails = ({ children }) => {
                     <thead>
                         <tr>
                             <th className="planeheader">Model</th>
-                            <th className="planeheader">Capacity</th>
+                            <th className="planeheader">Fuel_Capacity</th>
                             <th className="planeheader">Weight</th>
+                            <th className="planeheader">Maximum_Range</th>
+                            <th className="planeheader">Seating_Capacity</th>
                         </tr>
                     </thead>
                     <tbody>
                         {currentItems.map((plane, index) => (
                             <tr key={index}>
                                 <td className="planecell">{plane.Model}</td>
-                                <td className="planecell">{plane.Capacity}</td>
+                                <td className="planecell">{plane.Fuel_Capacity}</td>
                                 <td className="planecell">{plane.Weight}</td>
+                                <td className="planecell">{plane.Maximum_Range}</td>
+                                <td className="planecell">{plane.Seating_Capacity}</td>
                             </tr>
                         ))}
                     </tbody>
