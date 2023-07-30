@@ -1,13 +1,16 @@
 
 import './airplane-search.css'; // Import the CSS file for styling
-import React, { useState} from 'react';
+import React, { useState,useEffect} from 'react';
 
 
 
-const AirplaneSearch = ({ children },data) => {
+const AirplaneSearch = ({res}) => {
     
     const [Airplanes, setAirplane] = useState([]);
-    setAirplane(data.airplane);
+    useEffect(() => {
+        setAirplane(res.data.airplane);
+      }, []);
+    
     const itemsPerPage = 10; // Set the number of items to show per page
     const [currentPage, setCurrentPage] = useState(1);
 

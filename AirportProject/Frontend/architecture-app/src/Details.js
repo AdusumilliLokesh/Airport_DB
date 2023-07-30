@@ -10,13 +10,13 @@ import { ApronDetails } from './ApronDetails';
 import { ModelsData } from './ModelsData';
 import { AirplaneSearch } from './airplane-search';
 
-const Details = (showContent,res) => {
-    if (showContent == true) {
+const Details = ({showContent,res}) => {
+    if (showContent) {
     return (
         <VerticalTabs>
           <VerticalTab label="Airplane">
               <div>
-                <AirplaneSearch data={res}></AirplaneSearch>
+                <AirplaneSearch res={res}></AirplaneSearch>
               </div>
             </VerticalTab>
             <VerticalTab label="Owner">

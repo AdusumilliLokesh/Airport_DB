@@ -3,7 +3,7 @@ import './SearchBar.css';
 import React, { useState } from 'react';
 import axios from 'axios';
 
-const SearchBar = (setShowContent,setRes) => {
+const SearchBar = ({setShowContent,setRes}) => {
 
   
   const [searchQuery, setSearchQuery] = useState('');
