@@ -17,7 +17,7 @@ const ApronDetails = ({ children }) => {
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = aprons.slice(indexOfFirstItem, indexOfLastItem);
-
+   
     // Handle changing the page
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
@@ -25,6 +25,7 @@ const ApronDetails = ({ children }) => {
     const [capacity, setcapacity] = useState();
     const[ApronType,setApronType]=useState();
     const[ApronStatus,setApronStatus]=useState();
+    const[Apron_number,setApron_number]=useState();
     const handleEdit = (id) => {
         // Implement your edit logic here
         console.log('Edit item with ID:', id);
@@ -32,14 +33,11 @@ const ApronDetails = ({ children }) => {
         setcapacity(id.Aircraft_Capacity);
         setApronType(id.Apron_type);
         setApronStatus(id.Apron_status);
+        setApron_number(id.Apron_number);
         setAdd(false);
     };
 
-    const handleDelete = (id) => {
-        // Implement your delete logic here
-        console.log('Delete item with ID:', id);
-
-    };
+    
     const handleAdd = (id) => {
 
         // Implement your add logic here
@@ -47,7 +45,73 @@ const ApronDetails = ({ children }) => {
         setEdit(false);
         console.log('Add item with ID:', id);
     };
+    const useHandleSave=(event)=>{
+      event.preventDefault();
+      const data={
+        "Apron_type": ApronType,
+        "Aircraft_Capacity": capacity,
+        "Apron_status": ApronStatus
+      };
+      const apiUrl = 'http://localhost:5000/airport_aprons/'+Apron_number;
+
+  // Optional: Headers for the request (e.g., if you need to send an authorization token)
+  const headers = {
+    'Content-Type': 'application/json',
+    // Add any other required headers here
+  };
+  useEffect(() => {
+  // Make the POST request using Axios
+  axios.put(apiUrl, data, { headers })
+    .then((response) => {
+      // Process the response data
+      console.log('Response data:', response.data);
+      if(response.status === 200 && response.data.message=="Airport apron updated successfully."){
+        //useGetAPI();
+      }
+     
+      // Do something with the data, if needed
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      // Handle any errors that occurred during the request
+    });
+  }, []);
+    };
+    const useGetAPI=(event)=>{
+      event.preventDefault();
+      axios.get('/getAirportAprons') // The proxy is set to 'http://localhost:5000' in package.json
+            .then(response => setapron(response.data))
+            .catch(error => console.error('Error fetching data', error));
+    }
     
+    const handleSaveAdd=()=>{
+      const data={
+        "Apron_number": Apron_number,
+        "Apron_type": ApronType,
+        "Aircraft_Capacity": capacity,
+        "Apron_status": ApronStatus
+      };
+      const apiUrl = 'http://localhost:5000/airport_apron';
+
+  // Optional: Headers for the request (e.g., if you need to send an authorization token)
+  const headers = {
+    'Content-Type': 'application/json',
+    // Add any other required headers here
+  };
+
+  // Make the POST request using Axios
+  axios.post(apiUrl, data, { headers })
+    .then((response) => {
+      // Process the response data
+      console.log('Response data:', response.data);
+      setapron(response);
+      // Do something with the data, if needed
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      // Handle any errors that occurred during the request
+    });
+    };
   const handleChangecapacity = (event) => {
     setcapacity(event.target.value);
   };
@@ -114,16 +178,11 @@ const ApronDetails = ({ children }) => {
                                     <td className="aproncell">
                                         <span>
                                             <RiEdit2Line
-                                                onClick={() => handleEdit(apron)}
+                                                onClick={ handleEdit(apron)}
                                                 style={{ cursor: 'pointer', marginRight: '10px' }}
                                             />
                                         </span>
-                                        <span>
-                                            <RiDeleteBinLine
-                                                onClick={() => handleDelete(apron)}
-                                                style={{ cursor: 'pointer' }}
-                                            />
-                                        </span>
+                                        
                                     </td>
                                 </tr>
                             ))}
@@ -166,7 +225,9 @@ const ApronDetails = ({ children }) => {
                           <input type="text" value={ApronType} onChange={handleApronType} />
                         </label>
                         </div>
-                        <div><button type="submit">Save</button></div>
+                        <div>
+                          <button type="submit" onClick={useHandleSave}>Save</button>
+                        </div>
                       </form>
                     ) : null}
 
@@ -191,7 +252,7 @@ const ApronDetails = ({ children }) => {
                           <input type="text" value={ApronType} onChange={handleApronTypeAdd} />
                         </label>
                         </div>
-                        <div><button type="submit">Save</button></div>
+                        <div><button type="submit" onClick={() => handleSaveAdd}>Save</button></div>
                       </form>
                         : null}
                 </div>

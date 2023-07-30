@@ -135,12 +135,7 @@ const PlaneDetails = ({ children }) => {
                                                 style={{ cursor: 'pointer', marginRight: '10px' }}
                                             />
                                         </span>
-                                        <span>
-                                            <RiDeleteBinLine
-                                                onClick={() => handleDelete(plane)}
-                                                style={{ cursor: 'pointer' }}
-                                            />
-                                        </span>
+                                        
                                     </td>
                             </tr>
                         ))}
