@@ -38,18 +38,20 @@ const ModelSearch = ({res}) => {
                     <thead>
                         <tr>
                             <th className="modelheader">Model</th>
-                            <th className="modelheader">Capacity</th>
+                            <th className="modelheader">Fuel_Capacity</th>
                             <th className="modelheader">Weight</th>
-                            
+                            <th className="modelheader">Maximum_Range</th>
+                            <th className="modelheader">Seating_Capacity</th>
                         </tr>
                     </thead>
                     <tbody>
                         {currentItems.map((model, index) => (
                             <tr key={index}>
                                 <td className="modelcell">{model.Model}</td>
-                                <td className="modelcell">{model.Capacity}</td>
+                                <td className="modelcell">{model.Fuel_Capacity}</td>
                                 <td className="modelcell">{model.Weight}</td>
-                                
+                                <th className="modelheader">{model.Maximum_Range}</th>
+                            <th className="modelheader">{model.Seating_Capacity}</th>
                             </tr>
                         ))}
                     </tbody>

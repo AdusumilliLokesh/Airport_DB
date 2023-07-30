@@ -40,16 +40,15 @@ const OwnerSearch = ({res}) => {
                             <th className="ownerheader">owner_id</th>
                             <th className="ownerheader">Registration_no</th>
                             <th className="ownerheader">Purchase_date</th>
-                            <th className="ownerheader">type_of_owner</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
                         {currentItems.map((owner, index) => (
                             <tr key={index}>
                                 <td className="ownercell">{owner.owner_id}</td>
-                                <td className="ownercell">{owner.Registration_no}</td>
+                                <td className="ownercell">{owner.Registration_number}</td>
                                 <td className="ownercell">{owner.Purchase_date}</td>
-                                <td className="ownercell">{owner.type_of_owner}</td>
                             </tr>
                         ))}
                     </tbody>

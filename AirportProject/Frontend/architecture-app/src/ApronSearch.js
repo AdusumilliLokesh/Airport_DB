@@ -37,19 +37,20 @@ const ApronSearch = ({res}) => {
                 <table className="apronAlign">
                     <thead>
                         <tr>
-                            <th className="apronheader">AP_number</th>
-                            <th className="apronheader">Capacity</th>
-                            <th className="apronheader">AP_location</th>
+                            <th className="apronheader">Apron_number</th>
+                            <th className="apronheader">Aircraft_Capacity</th>
+                            <th className="apronheader">Apron_status</th>
+                            <th className="apronheader">Apron_type</th>
                             
                         </tr>
                     </thead>
                     <tbody>
                         {currentItems.map((apron, index) => (
                             <tr key={index}>
-                                <td className="aproncell">{apron.AP_number}</td>
-                                <td className="aproncell">{apron.Capacity}</td>
-                                <td className="aproncell">{apron.AP_location}</td>
-                                
+                                <td className="aproncell">{apron.Apron_number}</td>
+                                <td className="aproncell">{apron.Aircraft_Capacity}</td>
+                                <td className="aproncell">{apron.Apron_status}</td>
+                                <td className="aproncell">{apron.Apron_type}</td>
                             </tr>
                         ))}
                     </tbody>

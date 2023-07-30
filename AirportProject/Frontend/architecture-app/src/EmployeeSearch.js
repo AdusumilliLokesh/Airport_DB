@@ -37,28 +37,28 @@ const EmployeeSearch = ({res}) => {
                 <table className="employeeAlign">
                     <thead>
                         <tr>
-                            <th className="employeeheader">Efname</th>
-                            <th className="employeeheader">EMi</th>
-                            <th className="employeeheader">Elname</th>
+                            <th className="employeeheader">Employee_ID</th>
+                            <th className="employeeheader">First_name</th>
+                            <th className="employeeheader">Middle_Name</th>
+                            <th className="employeeheader">Last_name</th>
                             <th className="employeeheader">Salary</th>
-                            <th className="employeeheader">Essn</th>
-                            <th className="employeeheader">Esex</th>
+                            <th className="employeeheader">Sex</th>
                             <th className="employeeheader">Shift</th>
-                            <th className="employeeheader">Eaddress</th>
+                            <th className="employeeheader">Address</th>
                             <th className="employeeheader">Role</th>
                         </tr>
                     </thead>
                     <tbody>
                         {currentItems.map((employee, index) => (
                             <tr key={index}>
-                                <td className="employeecell">{employee.Efname}</td>
-                                <td className="employeecell">{employee.EMi}</td>
-                                <td className="employeecell">{employee.Elname}</td>
+                                <td className="employeecell">{employee.Employee_ID}</td>
+                                <td className="employeecell">{employee.First_name}</td>
+                                <td className="employeecell">{employee.Middle_Name}</td>
+                                <td className="employeecell">{employee.Last_name}</td>
                                 <td className="employeecell">{employee.Salary}</td>
-                                <td className="employeecell">{employee.Essn}</td>
-                                <td className="employeecell">{employee.Esex}</td>
+                                <td className="employeecell">{employee.Sex}</td>
                                 <td className="employeecell">{employee.Shift}</td>
-                                <td className="employeecell">{employee.Eaddress}</td>
+                                <td className="employeecell">{employee.Address}</td>
                                 <td className="employeecell">{employee.Role}</td>
                             </tr>
                         ))}

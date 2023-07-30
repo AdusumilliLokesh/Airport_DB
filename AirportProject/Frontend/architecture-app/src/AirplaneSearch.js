@@ -37,19 +37,23 @@ const AirplaneSearch = ({res}) => {
                 <table className="planeAlign">
                     <thead>
                         <tr>
-                            <th className="planeheader">Registration_no</th>
+                            <th className="planeheader">Registration_number</th>
                             <th className="planeheader">Manufacturer</th>
                             <th className="planeheader">Model</th>
-                            <th className="planeheader">AP_Number</th>
+                            <th className="planeheader">Apron_number</th>
+                            <th className="planeheader">Maintenance_Status</th>
+                            <th className="planeheader">Last_Maintenance_Date</th>
                         </tr>
                     </thead>
                     <tbody>
                         {currentItems.map((Airplane, index) => (
                             <tr key={index}>
-                                <td className="planecell">{Airplane.Registration_no}</td>
+                                <td className="planecell">{Airplane.Registration_number}</td>
                                 <td className="planecell">{Airplane.Manufacturer}</td>
                                 <td className="planecell">{Airplane.Model}</td>
-                                <td className="planecell">{Airplane.AP_Number}</td>
+                                <td className="planecell">{Airplane.Apron_number}</td>
+                                <td className="planecell">{Airplane.Maintenance_Status}</td>
+                                <td className="planecell">{Airplane.Last_Maintenance_Date}</td>
                             </tr>
                         ))}
                     </tbody>
