@@ -66,4 +66,4 @@ const SearchBar = (setShowContent,setRes) => {
   );
 };
 
-export default SearchBar;
+export {SearchBar};
