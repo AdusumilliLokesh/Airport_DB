@@ -1,26 +1,26 @@
 
-import './airplane-search.css'; // Import the CSS file for styling
+import './ModelSearch.css'; // Import the CSS file for styling
 import React, { useState,useEffect} from 'react';
 
 
 
-const AirplaneSearch = ({res}) => {
+const ModelSearch = ({res}) => {
     
-    const [Airplanes, setAirplane] = useState([]);
+    const [models, setmodel] = useState([]);
     useEffect(() => {
-        setAirplane(res.data.airplane);
-      }, []);
+        setmodel(res.data.typeOfPlane);
+      }, [res.data.typeOfPlane]);
     
     const itemsPerPage = 10; // Set the number of items to show per page
     const [currentPage, setCurrentPage] = useState(1);
 
     // Calculate the total number of pages
-    const totalPages = Math.ceil(Airplanes.length / itemsPerPage);
+    const totalPages = Math.ceil(models.length / itemsPerPage);
 
     // Get the current items to display based on the current page number
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = Airplanes.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = models.slice(indexOfFirstItem, indexOfLastItem);
 
     // Handle changing the page
     const handlePageChange = (pageNumber) => {
@@ -33,23 +33,23 @@ const AirplaneSearch = ({res}) => {
     return (
         <div>
             <div>
-                <h1>Airplanes Data</h1>
-                <table className="AirplaneAlign">
+                <h1>Models Data</h1>
+                <table className="modelAlign">
                     <thead>
                         <tr>
-                            <th className="Airplaneheader">Registration_no</th>
-                            <th className="Airplaneheader">Manufacturer</th>
-                            <th className="Airplaneheader">Model</th>
-                            <th className="Airplaneheader">AP_Number</th>
+                            <th className="modelheader">Model</th>
+                            <th className="modelheader">Capacity</th>
+                            <th className="modelheader">Weight</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
-                        {currentItems.map((Airplane, index) => (
+                        {currentItems.map((model, index) => (
                             <tr key={index}>
-                                <td className="Airplanecell">{Airplane.Registration_no}</td>
-                                <td className="Airplanecell">{Airplane.Manufacturer}</td>
-                                <td className="Airplanecell">{Airplane.Model}</td>
-                                <td className="Airplanecell">{Airplane.AP_Number}</td>
+                                <td className="modelcell">{model.Model}</td>
+                                <td className="modelcell">{model.Capacity}</td>
+                                <td className="modelcell">{model.Weight}</td>
+                                
                             </tr>
                         ))}
                     </tbody>
@@ -72,4 +72,4 @@ const AirplaneSearch = ({res}) => {
     );
 };
 
-export { AirplaneSearch };
+export { ModelSearch };
