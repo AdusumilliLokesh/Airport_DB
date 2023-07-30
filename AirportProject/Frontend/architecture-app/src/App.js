@@ -2,7 +2,7 @@ import React, { useState }  from 'react';
 
 
 import './App.css';
-import SearchBar from './SearchBar';
+import {SearchBar} from './SearchBar';
 import { Details } from './Details';
 function App() {
   const[res,setRes]=useState();

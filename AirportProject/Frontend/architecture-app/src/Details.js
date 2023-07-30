@@ -11,7 +11,8 @@ import { ModelsData } from './ModelsData';
 import { AirplaneSearch } from './airplane-search';
 
 const Details = (showContent,res) => {
-    return showContent?(
+    if (showContent == true) {
+    return (
         <VerticalTabs>
           <VerticalTab label="Airplane">
               <div>
@@ -40,8 +41,9 @@ const Details = (showContent,res) => {
             </VerticalTab>
            
           </VerticalTabs>
-       
-    ):(
+    );  
+    }else{
+        return(
         <VerticalTabs>
         <VerticalTab label="Aprons">
           <div>
@@ -69,9 +71,9 @@ const Details = (showContent,res) => {
           </div>
         </VerticalTab>
       </VerticalTabs>
-          
+        ); 
         
-    );
+        }
 };
 
 export { Details };
