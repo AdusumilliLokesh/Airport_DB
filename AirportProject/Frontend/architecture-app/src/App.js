@@ -9,19 +9,14 @@ import { ModelsData } from './ModelsData';
 import './App.css';
 import SearchBar from './SearchBar';
 function App() {
-  const [searchQuery, setSearchQuery] = useState('');
-  const handleSearchChange = (query) => {
-    setSearchQuery(query);
-    // Perform search or filtering logic here with the 'query' value
-    // For example, you can filter data or make API calls based on the search query.
-  };
+  
   return (
     <div className='alignbgpage'>
 
       <div >
         <div className='alignsearch'>
         <h1 className='align_title'>Airport Management System</h1>
-        <SearchBar onChange={handleSearchChange}  />
+        <SearchBar />
       {/* Render the results or other components based on the searchQuery if needed */}
       {/* <p>Search Query: {searchQuery}</p> */}
       </div>
