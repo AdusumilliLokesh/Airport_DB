@@ -8,9 +8,9 @@ const port = 5000;
 const dbConfig = {
     host: "localhost",
     user: "root",
-    password: "root",
+    password: "password",
     port: 3306,
-    database: "airport_db"
+    database: "airport_dbms"
 };
 
 const pool = mysql.createPool(dbConfig);
@@ -89,9 +89,9 @@ app.post('/searchAirplaneByRegistration', async (req, res) => {
 
     const connection = await pool.getConnection();
 
-    const [airplaneRows] = await connection.query('SELECT * FROM airplane WHERE registration_no = ?;', [regNumber]);
+    const [airplaneRows] = await connection.query('SELECT * FROM airplane WHERE Registration_Number = ?;', [regNumber]);
 
-    const [ownsRows] = await connection.query('SELECT * FROM owns WHERE registration_no = ?;', [regNumber]);
+    const [ownsRows] = await connection.query('SELECT * FROM owns WHERE Registration_number = ?;', [regNumber]);
 
     if (airplaneRows.length === 0) {
       connection.release();
@@ -102,14 +102,14 @@ app.post('/searchAirplaneByRegistration', async (req, res) => {
 
     const [typeOfPlaneRows] = await connection.query('SELECT * FROM type_of_plane WHERE model = ?;', [airplaneModel]);
 
-    const [worksOnRows] = await connection.query('SELECT * FROM works_on WHERE registration_no = ?;', [regNumber]);
+    const [worksOnRows] = await connection.query('SELECT * FROM works_on WHERE Registration_number = ?;', [regNumber]);
 
-    const essnArray = worksOnRows.map((row) => row.Essn);
+    const empArray = worksOnRows.map((row) => row.EmployeeId);
 
-    if (essnArray.length === 0) {
+    if (empArray.length === 0) {
       connection.release();
       return res.json({
-        airplane: airplaneRows[0],
+        airplane: airplaneRows|| [],
         owns: ownsRows || [],
         typeOfPlane: typeOfPlaneRows || [],
         employees: [],
@@ -117,18 +117,18 @@ app.post('/searchAirplaneByRegistration', async (req, res) => {
       });
     }
 
-    const [employeeRows] = await connection.query('SELECT * FROM employee WHERE essn IN (?);', [essnArray]);
+    const [employeeRows] = await connection.query('SELECT * FROM employee WHERE Employee_Id IN (?);', [empArray]);
 
     // Get the AP_number from the airplane data
     const apNumber = airplaneRows[0].AP_Number;
 
     // Query to fetch data from airport_apron based on the AP_number
-    const [airportApronRows] = await connection.query('SELECT * FROM airport_apron WHERE AP_number = ?;', [apNumber]);
+    const [airportApronRows] = await connection.query('SELECT * FROM airport_apron WHERE Apron_number = ?;', [apNumber]);
 
     connection.release();
 
     const response = {
-      airplane: airplaneRows[0],
+      airplane: airplaneRows || [],
       owns: ownsRows || [],
       typeOfPlane: typeOfPlaneRows || [],
       employees: employeeRows,
