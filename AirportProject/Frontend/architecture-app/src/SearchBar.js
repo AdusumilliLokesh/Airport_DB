@@ -2,7 +2,7 @@
 import React from 'react';
 import './SearchBar.css';
 
-import SearchIcon from './SearchIcon';
+
 const SearchBar = ({ onChange }) => {
   const handleClick = () => {
     // Logic to execute when the button is clicked
