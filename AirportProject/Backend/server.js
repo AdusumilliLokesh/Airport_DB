@@ -104,7 +104,7 @@ app.post('/searchAirplaneByRegistration', async (req, res) => {
 
     const [worksOnRows] = await connection.query('SELECT * FROM works_on WHERE Registration_number = ?;', [regNumber]);
 
-    const empArray = worksOnRows.map((row) => row.EmployeeId);
+    const empArray = worksOnRows.map((row) => row.Employee_ID);
 
     if (empArray.length === 0) {
       connection.release();
@@ -120,7 +120,7 @@ app.post('/searchAirplaneByRegistration', async (req, res) => {
     const [employeeRows] = await connection.query('SELECT * FROM employee WHERE Employee_Id IN (?);', [empArray]);
 
     // Get the AP_number from the airplane data
-    const apNumber = airplaneRows[0].AP_Number;
+    const apNumber = airplaneRows[0].Apron_number;
 
     // Query to fetch data from airport_apron based on the AP_number
     const [airportApronRows] = await connection.query('SELECT * FROM airport_apron WHERE Apron_number = ?;', [apNumber]);
