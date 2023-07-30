@@ -1,6 +1,6 @@
 const express = require('express');
 const mysql = require('mysql2/promise');
-const cors = require('cors'); // Import the cors package
+const cors = require('cors'); 
 
 const app = express();
 const port = 5000;
@@ -8,7 +8,7 @@ const port = 5000;
 const dbConfig = {
     host: "localhost",
     user: "root",
-    password: "password",
+    password: "root",
     port: 3306,
     database: "airport_dbms"
 };
@@ -113,16 +113,14 @@ app.post('/searchAirplaneByRegistration', async (req, res) => {
         owns: ownsRows || [],
         typeOfPlane: typeOfPlaneRows || [],
         employees: [],
-        airportApron: [] // Return an empty array since there is no AP_number in airplane data
+        airportApron: [] 
       });
     }
 
     const [employeeRows] = await connection.query('SELECT * FROM employee WHERE Employee_Id IN (?);', [empArray]);
 
-    // Get the AP_number from the airplane data
     const apNumber = airplaneRows[0].Apron_number;
 
-    // Query to fetch data from airport_apron based on the AP_number
     const [airportApronRows] = await connection.query('SELECT * FROM airport_apron WHERE Apron_number = ?;', [apNumber]);
 
     connection.release();
@@ -141,9 +139,157 @@ app.post('/searchAirplaneByRegistration', async (req, res) => {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 });
-  
 
 
+app.put('/airplanes/:registration_number', async (req, res) => {
+  const registrationNumber = req.params.registration_number;
+  const { Model, Manufacturer, Apron_number, Maintenance_Status, Last_Maintenance_Date } = req.body;
+
+  try {
+    const connection = await pool.getConnection();
+    const query = `UPDATE airplane SET Model = ?, Manufacturer = ?, Apron_number = ?, Maintenance_Status = ?, Last_Maintenance_Date = ? WHERE Registration_number = ?`;
+
+    const values = [Model, Manufacturer, Apron_number, Maintenance_Status, Last_Maintenance_Date, registrationNumber];
+
+    await connection.query(query, values);
+    connection.release();
+    res.status(200).json({ message: 'Airplane updated successfully.' });
+  } catch (err) {
+    console.error('Error updating airplane:', err);
+    res.status(500).json({ error: 'An error occurred while updating the airplane.' });
+  }
+});
+
+app.put('/airplanes/:registration_number', async (req, res) => {
+  const registrationNumber = req.params.registration_number;
+  const { Model, Manufacturer, Apron_number, Maintenance_Status, Last_Maintenance_Date } = req.body;
+
+  try {
+    const connection = await pool.getConnection();
+    const query = `UPDATE airplane SET Model = ?, Manufacturer = ?, Apron_number = ?, Maintenance_Status = ?, Last_Maintenance_Date = ? WHERE Registration_number = ?`;
+
+    const values = [Model, Manufacturer, Apron_number, Maintenance_Status, Last_Maintenance_Date, registrationNumber];
+
+    await connection.query(query, values);
+    connection.release();
+    res.status(200).json({ message: 'Airplane updated successfully.' });
+  } catch (err) {
+    console.error('Error updating airplane:', err);
+    res.status(500).json({ error: 'An error occurred while updating the airplane.' });
+  }
+});
+
+app.put('/airport_aprons/:apron_number', async (req, res) => {
+  const apronNumber = req.params.apron_number;
+  const { Apron_type, Aircraft_Capacity, Apron_status } = req.body;
+
+  try {
+    const connection = await pool.getConnection();
+    const query = `UPDATE airport_apron SET Apron_type = ?, Aircraft_Capacity = ?, Apron_status = ? WHERE Apron_number = ?`;
+
+    const values = [Apron_type, Aircraft_Capacity, Apron_status, apronNumber];
+
+    await connection.query(query, values);
+    connection.release();
+    res.status(200).json({ message: 'Airport apron updated successfully.' });
+  } catch (err) {
+    console.error('Error updating airport apron:', err);
+    res.status(500).json({ error: 'An error occurred while updating the airport apron.' });
+  }
+});
+
+app.put('/type_of_planes/:model', async (req, res) => {
+  const model = req.params.model;
+  const { Fuel_Capacity, Maximum_Range, Weight, Seating_Capacity } = req.body;
+
+  try {
+    const connection = await pool.getConnection();
+    const query = `UPDATE type_of_plane 
+                   SET Fuel_Capacity = ?, 
+                       Maximum_Range = ?, 
+                       Weight = ?, 
+                       Seating_Capacity = ? 
+                   WHERE Model = ?`;
+
+    const values = [Fuel_Capacity, Maximum_Range, Weight, Seating_Capacity, model];
+
+    await connection.query(query, values);
+    connection.release();
+    res.status(200).json({ message: 'Type of plane updated successfully.' });
+  } catch (err) {
+    console.error('Error updating type of plane:', err);
+    res.status(500).json({ error: 'An error occurred while updating the type of plane.' });
+  }
+});
+
+app.put('/owns/:owner_id/:registration_number', async (req, res) => {
+  const ownerId = req.params.owner_id;
+  const registrationNumber = req.params.registration_number;
+  const { Purchase_date } = req.body;
+
+  try {
+    const connection = await pool.getConnection();
+    const query = `UPDATE owns 
+                   SET Purchase_date = ? 
+                   WHERE owner_id = ? AND Registration_number = ?`;
+
+    const values = [Purchase_date, ownerId, registrationNumber];
+
+    await connection.query(query, values);
+    connection.release();
+    res.status(200).json({ message: 'Owns table updated successfully.' });
+  } catch (err) {
+    console.error('Error updating owns table:', err);
+    res.status(500).json({ error: 'An error occurred while updating the owns table.' });
+  }
+});
+
+app.put('/employees/:employee_id', async (req, res) => {
+  const employeeId = req.params.employee_id;
+  const {
+    First_name,
+    Middle_Name,
+    Last_name, 
+    Salary,
+    Sex,
+    Shift,
+    Address,
+    Role,
+  } = req.body;
+
+  try {
+    const connection = await pool.getConnection();
+    const query = `UPDATE employee 
+                   SET First_name = ?,
+                       Middle_Name = ?,
+                       Last_name = ?,
+                       Salary = ?,
+                       Sex = ?,
+                       Shift = ?,
+                       Address = ?,
+                       Role = ?
+                   WHERE Employee_ID = ?`;
+
+    const values = [
+      First_name,
+      Middle_Name,
+      Last_name,
+      Salary,
+      Sex,
+      Shift,
+      Address,
+      Role,
+      employeeId,
+    ];
+
+    await connection.query(query, values);
+    connection.release();
+    res.status(200).json({ message: 'Employee updated successfully.' });
+  } catch (err) {
+    console.error('Error updating employee:', err);
+    res.status(500).json({ error: 'An error occurred while updating the employee.' });
+  }
+});
 
 
 app.listen(port, () => {
