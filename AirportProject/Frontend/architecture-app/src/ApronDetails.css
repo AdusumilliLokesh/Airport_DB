@@ -12,3 +12,11 @@
     border-collapse: collapse;
      width: fit-content ;
 }
+.align_table{
+    width:70%;
+    float: left;
+}
+.align_form{
+    width:30%;
+    float: right;
+}
