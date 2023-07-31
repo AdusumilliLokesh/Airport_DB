@@ -43,6 +43,10 @@ const ApronDetails = ({ children }) => {
     // Implement your add logic here
     setAdd(true);
     setEdit(false);
+    setcapacity('');
+    setApronType('');
+    setApronStatus('');
+    setApron_number('');
     console.log('Add item with ID:', id);
   };
   const useHandleSave = (event) => {
@@ -69,6 +73,8 @@ const ApronDetails = ({ children }) => {
             axios.get('/getAirportAprons') // The proxy is set to 'http://localhost:5000' in package.json
             .then(response => setapron(response.data))
             .catch(error => console.error('Error fetching data', error));
+            setAdd(false);
+    setEdit(false);
               // Do something with the data, if needed
           }
 
@@ -106,6 +112,8 @@ const ApronDetails = ({ children }) => {
         axios.get('/getAirportAprons') // The proxy is set to 'http://localhost:5000' in package.json
       .then(response => setapron(response.data))
       .catch(error => console.error('Error fetching data', error));
+      setAdd(false);
+    setEdit(false);
         // Do something with the data, if needed
       })
       .catch((error) => {

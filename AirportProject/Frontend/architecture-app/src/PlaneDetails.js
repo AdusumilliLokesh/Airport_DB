@@ -41,6 +41,11 @@ const PlaneDetails = ({ children }) => {
         // Implement your add logic here
         setAdd(true);
         setEdit(false);
+        setModel('');
+        setWeight('');
+        setFuel_Capacity('');
+        setMaximum_Range('');
+        setSeating_Capacity('');
         console.log('Add item with ID:', id);
     };
     const handleModel = (event) => {
@@ -99,6 +104,8 @@ const PlaneDetails = ({ children }) => {
             axios.get('/getTypeOfPlane') // The proxy is set to 'http://localhost:5000' in package.json
             .then(response => setPlanes(response.data))
             .catch(error => console.error('Error fetching data', error));
+            setAdd(false);
+    setEdit(false);
               // Do something with the data, if needed
           }
 
@@ -135,6 +142,8 @@ const PlaneDetails = ({ children }) => {
             axios.get('/getTypeOfPlane') // The proxy is set to 'http://localhost:5000' in package.json
           .then(response => setPlanes(response.data))
           .catch(error => console.error('Error fetching data', error));
+          setAdd(false);
+    setEdit(false);
             // Do something with the data, if needed
           })
           .catch((error) => {

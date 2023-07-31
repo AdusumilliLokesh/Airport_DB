@@ -67,6 +67,8 @@ const EmployeeDetails = ({ children }) => {
           axios.get('/getEmployee') // The proxy is set to 'http://localhost:5000' in package.json
             .then(response => setEmployee(response.data))
             .catch(error => console.error('Error fetching data', error));
+            setAdd(false);
+    setEdit(false);
           // Do something with the data, if needed
         }
 
@@ -83,6 +85,15 @@ const EmployeeDetails = ({ children }) => {
     // Implement your add logic here
     setAdd(true);
     setEdit(false);
+    setAddress('');
+    setEmployee_ID('');
+    setFirst_name('');
+    setLast_name('');
+    setMiddle_Name('');
+    setRole('');
+    setSalary('');
+    setSex('');
+    setShift('');
     console.log('Add item with ID:', id);
   };
 
@@ -172,6 +183,8 @@ const EmployeeDetails = ({ children }) => {
           axios.get('/getEmployee') // The proxy is set to 'http://localhost:5000' in package.json
             .then(response => setEmployee(response.data))
             .catch(error => console.error('Error fetching data', error));
+            setAdd(false);
+    setEdit(false);
           // Do something with the data, if needed
         }
 
@@ -213,6 +226,8 @@ const EmployeeDetails = ({ children }) => {
          axios.get('/getEmployee') // The proxy is set to 'http://localhost:5000' in package.json
        .then(response => setEmployee(response.data))
        .catch(error => console.error('Error fetching data', error));
+       setAdd(false);
+    setEdit(false);
          // Do something with the data, if needed
        })
        .catch((error) => {

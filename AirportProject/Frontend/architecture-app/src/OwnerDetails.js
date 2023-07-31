@@ -55,6 +55,8 @@ const OwnerDetails = ({ children }) => {
               axios.get('/getOwner') // The proxy is set to 'http://localhost:5000' in package.json
               .then(response => setowner(response.data))
               .catch(error => console.error('Error fetching data', error));
+              setAdd(false);
+    setEdit(false);
                 // Do something with the data, if needed
             }
   
@@ -73,6 +75,9 @@ const OwnerDetails = ({ children }) => {
         // Implement your add logic here
         setAdd(true);
         setEdit(false);
+        setowner_id('');
+        setRegistration_number('');
+        setPurchase_date('');
         console.log('Add item with ID:', id);
     };
     
@@ -117,6 +122,8 @@ const OwnerDetails = ({ children }) => {
             axios.get('/getOwner') // The proxy is set to 'http://localhost:5000' in package.json
             .then(response => setowner(response.data))
             .catch(error => console.error('Error fetching data', error));
+            setAdd(false);
+    setEdit(false);
               // Do something with the data, if needed
           }
 
@@ -152,6 +159,8 @@ const OwnerDetails = ({ children }) => {
         axios.get('/getOwner') // The proxy is set to 'http://localhost:5000' in package.json
       .then(response => setowner(response.data))
       .catch(error => console.error('Error fetching data', error));
+      setAdd(false);
+    setEdit(false);
         // Do something with the data, if needed
       })
       .catch((error) => {

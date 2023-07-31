@@ -62,6 +62,8 @@ const ModelsData = ({ children }) => {
                 axios.get('/getAirplane') // The proxy is set to 'http://localhost:5000' in package.json
                 .then(response => setmodel(response.data))
                 .catch(error => console.error('Error fetching data', error));
+                setAdd(false);
+    setEdit(false);
                   // Do something with the data, if needed
               }
     
@@ -79,6 +81,12 @@ const ModelsData = ({ children }) => {
         // Implement your add logic here
         setAdd(true);
         setEdit(false);
+        setManufacturer('');
+        setModel('');
+        setApronNumber('');
+        setLast_Maintenance_Date('');
+        setMaintenance_Status('');
+        setRegistration_number('');
         console.log('Add item with ID:', id);
     };
     const handleChangeManufacturer	 = (event) => {
@@ -149,6 +157,8 @@ const ModelsData = ({ children }) => {
                 axios.get('/getAirplane') // The proxy is set to 'http://localhost:5000' in package.json
                 .then(response => setmodel(response.data))
                 .catch(error => console.error('Error fetching data', error));
+                setAdd(false);
+    setEdit(false);
                   // Do something with the data, if needed
               }
     
@@ -186,6 +196,8 @@ const ModelsData = ({ children }) => {
             axios.get('/getAirplane') // The proxy is set to 'http://localhost:5000' in package.json
           .then(response => setmodel(response.data))
           .catch(error => console.error('Error fetching data', error));
+          setAdd(false);
+    setEdit(false);
             // Do something with the data, if needed
           })
           .catch((error) => {
