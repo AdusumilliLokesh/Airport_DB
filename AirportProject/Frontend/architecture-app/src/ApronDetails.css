@@ -55,3 +55,29 @@
 .Align_label{
     margin-bottom: 20px;
 }  
+.dropdown-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .dropdown-label {
+    margin-right: 10px;
+    font-size: 16px;
+  }
+  
+  .dropdown-select {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .search-bar-input{
+    border: none;
+    padding: 8px 30px 8px 10px;
+    font-size: 16px;
+    outline: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    flex: none;
+  }
+  
