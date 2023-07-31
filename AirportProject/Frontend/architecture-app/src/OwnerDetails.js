@@ -35,9 +35,37 @@ const OwnerDetails = ({ children }) => {
         setAdd(false);
     };
 
-    const handleDelete = (id) => {
-        // Implement your delete logic here
-        console.log('Delete item with ID:', id);
+    const handleDelete = (id,event) => {
+      event.preventDefault();
+        
+      const apiUrl = 'http://localhost:5000/owns/' + owner_id+"/"+Registration_number;
+  
+      // Optional: Headers for the request (e.g., if you need to send an authorization token)
+      const headers = {
+        'Content-Type': 'application/json',
+        // Add any other required headers here
+      };
+     
+        // Make the POST request using Axios
+        axios.delete(apiUrl, { headers })
+          .then((response) => {
+            // Process the response data
+            console.log('Response data:', response.data);
+            if (response.status === 200 && response.data.message === "Airport apron updated successfully.") {
+              axios.get('/getOwner') // The proxy is set to 'http://localhost:5000' in package.json
+              .then(response => setowner(response.data))
+              .catch(error => console.error('Error fetching data', error));
+                // Do something with the data, if needed
+            }
+  
+            // Do something with the data, if needed
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+            // Handle any errors that occurred during the request
+          });
+      console.log('Delete item with ID:', id);
+
 
     };
     const handleAdd = (id) => {
@@ -68,11 +96,69 @@ const OwnerDetails = ({ children }) => {
   };
   const handleSubmit = (event) => {
     //setcapacity(event.target.value);
-    
+    event.preventDefault();
+    const data = {
+      "Purchase_date": Purchase_date
+    };
+    const apiUrl = 'http://localhost:5000/owns/' + owner_id+"/"+Registration_number;
+
+    // Optional: Headers for the request (e.g., if you need to send an authorization token)
+    const headers = {
+      'Content-Type': 'application/json',
+      // Add any other required headers here
+    };
+   
+      // Make the POST request using Axios
+      axios.put(apiUrl, data, { headers })
+        .then((response) => {
+          // Process the response data
+          console.log('Response data:', response.data);
+          if (response.status === 200 && response.data.message === "Type of plane updated successfully.") {
+            axios.get('/getOwner') // The proxy is set to 'http://localhost:5000' in package.json
+            .then(response => setowner(response.data))
+            .catch(error => console.error('Error fetching data', error));
+              // Do something with the data, if needed
+          }
+
+          // Do something with the data, if needed
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          // Handle any errors that occurred during the request
+        });
+
   };
   const handleSubmitAdd = (event) => {
     //setcapacity(event.target.value);
+    event.preventDefault();
+    const data = {
+      "owner_id": owner_id,
+  "Registration_number": Registration_number,
+  "Purchase_date": Purchase_date
+    };
+    const apiUrl = 'http://localhost:5000/owns';
+
+    // Optional: Headers for the request (e.g., if you need to send an authorization token)
+    const headers = {
+      'Content-Type': 'application/json',
+      // Add any other required headers here
+    };
     
+    // Make the POST request using Axios
+    axios.post(apiUrl, data, { headers })
+      .then((response) => {
+        // Process the response data
+        console.log('Response data:', response.data);
+        axios.get('/getOwner') // The proxy is set to 'http://localhost:5000' in package.json
+      .then(response => setowner(response.data))
+      .catch(error => console.error('Error fetching data', error));
+        // Do something with the data, if needed
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        // Handle any errors that occurred during the request
+      });
+
   };
 
     useEffect(() => {
@@ -118,7 +204,7 @@ const OwnerDetails = ({ children }) => {
                                         </span>
                                         <span>
                                             <RiDeleteBinLine
-                                                onClick={() => handleDelete(owner)}
+                                                onClick={(e) => handleDelete(owner,e)}
                                                 style={{ cursor: 'pointer' }}
                                             />
                                         </span>
