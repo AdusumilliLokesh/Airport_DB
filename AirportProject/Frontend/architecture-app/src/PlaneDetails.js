@@ -2,7 +2,7 @@
 import './PlaneDetails.css'; // Import the CSS file for styling
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { RiEdit2Line, RiDeleteBinLine, RiAddLine } from 'react-icons/ri';
+import { RiEdit2Line, RiAddLine } from 'react-icons/ri';
 
 const PlaneDetails = ({ children }) => {
     const [planes, setPlanes] = useState([]);
@@ -35,11 +35,7 @@ const PlaneDetails = ({ children }) => {
         setSeating_Capacity(id.Seating_Capacity);
     };
 
-    const handleDelete = (id) => {
-        // Implement your delete logic here
-        console.log('Delete item with ID:', id);
-
-    };
+    
     const handleAdd = (id) => {
 
         // Implement your add logic here
@@ -79,10 +75,73 @@ const PlaneDetails = ({ children }) => {
       };
       const handleSubmit = (event) => {
         //setcapacity(event.target.value);
-        
+        event.preventDefault();
+    const data = {
+      "Fuel_Capacity": Fuel_Capacity,
+      "Maximum_Range": Maximum_Range,
+      "Weight": Weight,
+      "Seating_Capacity": Seating_Capacity
+    };
+    const apiUrl = 'http://localhost:5000/type_of_planes/' + Model;
+
+    // Optional: Headers for the request (e.g., if you need to send an authorization token)
+    const headers = {
+      'Content-Type': 'application/json',
+      // Add any other required headers here
+    };
+   
+      // Make the POST request using Axios
+      axios.put(apiUrl, data, { headers })
+        .then((response) => {
+          // Process the response data
+          console.log('Response data:', response.data);
+          if (response.status === 200 && response.data.message === "Type of plane updated successfully.") {
+            axios.get('/getTypeOfPlane') // The proxy is set to 'http://localhost:5000' in package.json
+            .then(response => setPlanes(response.data))
+            .catch(error => console.error('Error fetching data', error));
+              // Do something with the data, if needed
+          }
+
+          // Do something with the data, if needed
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+          // Handle any errors that occurred during the request
+        });
+
       };
       const handleSubmitAdd = (event) => {
-        //setcapacity(event.target.value);
+        event.preventDefault();
+        const data = {
+          "Model": Model,
+          "Fuel_Capacity": Fuel_Capacity,
+          "Maximum_Range": Maximum_Range,
+          "Weight": Weight,
+          "Seating_Capacity": Seating_Capacity
+        };
+        const apiUrl = 'http://localhost:5000/type_of_plane';
+    
+        // Optional: Headers for the request (e.g., if you need to send an authorization token)
+        const headers = {
+          'Content-Type': 'application/json',
+          // Add any other required headers here
+        };
+        
+        // Make the POST request using Axios
+        axios.post(apiUrl, data, { headers })
+          .then((response) => {
+            // Process the response data
+            console.log('Response data:', response.data);
+            axios.get('/getTypeOfPlane') // The proxy is set to 'http://localhost:5000' in package.json
+          .then(response => setPlanes(response.data))
+          .catch(error => console.error('Error fetching data', error));
+            // Do something with the data, if needed
+          })
+          .catch((error) => {
+            console.error('Error:', error);
+            // Handle any errors that occurred during the request
+          });
+       
         
       };
     // Handle changing the page
