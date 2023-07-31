@@ -239,50 +239,50 @@ const OwnerDetails = ({ children }) => {
             </div>
             <div className='align_form'>
                     {Edit ? (
-                        <form onSubmit={handleSubmit}>
-                        <div>Edit Owner
-                        <label>
-                        Owner ID:
-                          <input type="text" value={owner_id} onChange={handleowner_id} />
-                        </label>
+                        <form onSubmit={handleSubmit} className='labelAlign'>
+                        <div className='Align_label'>Edit Owner</div>
+                        <div className='form-group'>
+                        <div className='floatleft'>Owner ID:</div>
+                          <input type="text" value={owner_id} onChange={handleowner_id} className='floatright'/>
+                        
                         </div>
-                        <div>
-                        <label>
-                        Registration_number:
-                          <input type="text" value={Registration_number} onChange={handleRegistration_number} />
-                        </label>
+                        <div className='form-group'>
+                        
+                        <div className='floatleft'>Registration_number:</div>
+                          <input type="text" value={Registration_number} onChange={handleRegistration_number} className='floatright'/>
+                        
                         </div>
-                        <div>
-                        <label>
+                        <div className='form-group'>
+                        
                             
-                        Purchase_date:
-                          <input type="text" value={Purchase_date} onChange={handlePurchase_date} />
-                        </label>
+                        <div className='floatleft'>Purchase_date:</div>
+                          <input type="text" value={Purchase_date} onChange={handlePurchase_date} className='floatright'/>
+                        
                         </div>
                         <div><button type="submit">Save</button></div>
                       </form>
                     ) : null}
 
                     {Add ?
-                        <form onSubmit={handleSubmitAdd}>
-                        <div>Add Owner:
-                        <label>
-                        Owner_ID:
-                          <input type="text" value={owner_id} onChange={handleowner_idAdd} />
-                        </label>
+                        <form onSubmit={handleSubmitAdd} className='labelAlign'>
+                        <div className='Align_label'>Add Owner:</div>
+                        <div className='form-group'>
+                        <div className='floatleft'>Owner_ID:</div>
+                          <input type="text" value={owner_id} onChange={handleowner_idAdd} className='floatright'/>
+                        
                         </div>
-                        <div>
-                        <label>
-                        Registration_number:
-                          <input type="text" value={Registration_number} onChange={handleRegistration_numberAdd} />
-                        </label>
+                        <div className='form-group'>
+                        
+                        <div className='floatleft'>Registration_number:</div>
+                          <input type="text" value={Registration_number} onChange={handleRegistration_numberAdd} className='floatright'/>
+                        
                         </div>
-                        <div>
-                        <label>
+                        <div className='form-group'>
+                        
                             
-                        Purchase_date:
-                          <input type="text" value={Purchase_date} onChange={handlePurchase_dateAdd} />
-                        </label>
+                        <div className='floatleft'>Purchase_date:</div>
+                          <input type="text" value={Purchase_date} onChange={handlePurchase_dateAdd} className='floatright'/>
+                        
                         </div>
                         <div><button type="submit">Save</button></div>
                       </form>

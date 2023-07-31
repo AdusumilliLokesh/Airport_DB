@@ -226,78 +226,79 @@ const PlaneDetails = ({ children }) => {
             </div>
             <div className='align_form'>
                     {Edit ? (
-                        <form onSubmit={handleSubmit}>
-                        <div>Edit Plane
-                        <label>
-                        Model:
-                          <input type="text" value={Model} onChange={handleModel} />
-                        </label>
+                        <form onSubmit={handleSubmit} className='labelAlign'>
+                        <div className='Align_label'>Edit Plane</div>
+                        <div className='form-group'>
+                        
+                        <div className='floatleft'>Model:</div>
+                          <input type="text" value={Model} onChange={handleModel} className='floatright'/>
+                       
                         </div>
-                        <div>
-                        <label>
-                        Fuel_Capacity:
-                          <input type="text" value={Fuel_Capacity} onChange={handleFuel_Capacity} />
-                        </label>
+                        <div className='form-group'>
+                        
+                        <div className='floatleft'>Fuel_Capacity:</div>
+                          <input type="text" value={Fuel_Capacity} onChange={handleFuel_Capacity} className='floatright'/>
+                        
                         </div>
-                        <div>
-                        <label>
+                        <div className='form-group'>
+                        
                             
-                        Weight:
-                          <input type="text" value={Weight} onChange={handleWeight} />
-                        </label>
+                        <div className='floatleft'>Weight:</div>
+                          <input type="text" value={Weight} onChange={handleWeight} className='floatright'/>
+                        
                         </div>
-                        <div>
-                        <label>
+                        <div className='form-group'>
+                        
                             
-                        Maximum_Range:
-                          <input type="text" value={Maximum_Range} onChange={handleMaximum_Range} />
-                        </label>
+                        <div className='floatleft'>Maximum_Range:</div>
+                          <input type="text" value={Maximum_Range} onChange={handleMaximum_Range} className='floatright'/>
+                        
                         </div>
-                        <div>
-                        <label>
+                        <div className='form-group'>
+                        <div className='floatleft'>
                             
-                        Seating_Capacity:
-                          <input type="text" value={Seating_Capacity} onChange={handleSeating_Capacity} />
-                        </label>
+                        Seating_Capacity:</div>
+                          <input type="text" value={Seating_Capacity} onChange={handleSeating_Capacity} className='floatright'/>
+                          
                         </div>
                         <div><button type="submit">Save</button></div>
                       </form>
                     ) : null}
 
                     {Add ?
-                        <form onSubmit={handleSubmitAdd}>
-                        <div>Add new Plane:
-                        <label>
-                        Model:
-                          <input type="text" value={Model} onChange={handleModelAdd} />
-                        </label>
+                        <form onSubmit={handleSubmitAdd} className='labelAlign'>
+                        <div className='Align_label'>Add new Plane:</div>
+                        <div className='form-group'>
+                          <div className='floatleft'>Model:</div>
+                        
+                          <input type="text" value={Model} onChange={handleModelAdd} className='floatright'/>
+                        
                         </div>
-                        <div>
-                        <label>
-                        Fuel_Capacity:
-                          <input type="text" value={Fuel_Capacity} onChange={handleFuel_CapacityAdd} />
-                        </label>
+                        <div className='form-group'>
+                        
+                        <div className='floatleft'>Fuel_Capacity:</div>
+                          <input type="text" value={Fuel_Capacity} onChange={handleFuel_CapacityAdd} className='floatright'/>
+                        
                         </div>
-                        <div>
-                        <label>
+                        <div className='form-group'>
+                        
+                        <div className='floatleft'>Weight:</div> 
+                          <input type="text" value={Weight} onChange={handleWeightAdd} className='floatright'/>
+                        
+                        </div>
+                        <div className='form-group'>
+                        
                             
-                        Weight:
-                          <input type="text" value={Weight} onChange={handleWeightAdd} />
-                        </label>
+                        <div className='floatleft'>Maximum_Range:</div>
+                          <input type="text" value={Maximum_Range} onChange={handleMaximum_RangeAdd} className='floatright'/>
+                        
                         </div>
-                        <div>
-                        <label>
+                        <div className='form-group'>
+                        <div className='floatleft'>
                             
-                        Maximum_Range:
-                          <input type="text" value={Maximum_Range} onChange={handleMaximum_RangeAdd} />
-                        </label>
-                        </div>
-                        <div>
-                        <label>
-                            
-                        Seating_Capacity:
-                          <input type="text" value={Seating_Capacity} onChange={handleSeating_CapacityAdd} />
-                        </label>
+                        Seating_Capacity:</div>
+                          <input type="text" value={Seating_Capacity} onChange={handleSeating_CapacityAdd} className='floatright'/>
+                          
                         </div>
                         <div><button type="submit">Save</button></div>
                       </form>

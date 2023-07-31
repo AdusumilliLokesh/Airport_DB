@@ -215,52 +215,48 @@ const ApronDetails = ({ children }) => {
       </div>
       <div className='align_form'>
         {Edit ? (
-          <form onSubmit={handleSubmit}>
-            <div>Edit Apron
-              <label>
-                Capacity:
-                <input type="text" value={capacity} onChange={handleChangecapacity} />
-              </label>
-            </div>
-            <div>
-              <label>
-                Apron Status:
-                <input type="text" value={ApronStatus} onChange={handleApronStatus} />
-              </label>
-            </div>
-            <div>
-              <label>
-
-                Apron Type:
-                <input type="text" value={ApronType} onChange={handleApronType} />
-              </label>
-            </div>
-            <div>
-              <button type="submit" onClick={useHandleSave}>Save</button>
-            </div>
-          </form>
+          <form onSubmit={handleSubmit} className='labelAlign'>
+          <div className='Align_label'>Edit Apron</div>
+          <div className='form-group'>
+            <div className='floatleft'>Capacity:</div>
+            <input type='text' value={capacity} className='floatright' onChange={handleChangecapacity} />
+          </div>
+          <div className='form-group'>
+            <div className='floatleft'>Apron Status:</div>
+            <input type='text' className='floatright' value={ApronStatus} onChange={handleApronStatus} />
+          </div>
+          <div className='form-group'>
+            <div className='floatleft'>Apron Type:</div>
+            <input type='text' className='floatright' value={ApronType} onChange={handleApronType} />
+          </div>
+          <div>
+            <button type='submit' onClick={useHandleSave}>Save</button>
+          </div>
+        </form>
+        
         ) : null}
 
         {Add ?
-          <form onSubmit={handleSubmitAdd}>
-            <div>Add new Apron:
-              <label>
-                Capacity:
-                <input type="text" value={capacity} onChange={handleChangecapacityAdd} />
-              </label>
+          <form onSubmit={handleSubmitAdd} className='labelAlign'>
+            <div className='Align_label'>Add new Apron:</div>
+            <div className='form-group'>
+              
+                <div className='floatleft'>Capacity:</div>
+                <input type="text" value={capacity} onChange={handleChangecapacityAdd} className='floatright'/>
+              
             </div>
-            <div>
-              <label>
-                Apron Status:
-                <input type="text" value={ApronStatus} onChange={handleApronStatusAdd} />
-              </label>
+            <div className='form-group'>
+              
+                <div className='floatleft'>Apron Status:</div>
+                <input type="text" value={ApronStatus} onChange={handleApronStatusAdd} className='floatright'/>
+              
             </div>
-            <div>
-              <label>
+            <div className='form-group'>
+              
 
-                Apron Type:
-                <input type="text" value={ApronType} onChange={handleApronTypeAdd} />
-              </label>
+                <div className='floatleft'>Apron Type:</div>
+                <input type="text" value={ApronType} onChange={handleApronTypeAdd} className='floatright'/>
+              
             </div>
             <div><button type="submit" onClick={ useHandleSaveAdd}>Save</button></div>
           </form>

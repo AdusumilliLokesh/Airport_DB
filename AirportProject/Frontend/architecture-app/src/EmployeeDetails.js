@@ -317,134 +317,134 @@ const EmployeeDetails = ({ children }) => {
       </div>
       <div className='align_form'>
         {Edit ? (
-          <form onSubmit={handleSubmit}>
-            <div>Edit Employee
-              <label>
-                Address:
-                <input type="text" value={Address} onChange={handleAddress} />
-              </label>
+          <form onSubmit={handleSubmit} className='labelAlign'>
+            <div className='Align_label'>Edit Employee</div>
+            <div className='form-group'>
+                <div className='floatleft'>Address:</div>
+                <input type="text" value={Address} onChange={handleAddress}  className='floatright'/>
+              
             </div>
-            <div>
-              <label>
-                Employee_ID:
-                <input type="text" value={Employee_ID} onChange={handleEmployee_ID} />
-              </label>
+            <div className='form-group'>
+              
+              <div className='floatleft'>  Employee_ID:</div>
+                <input type="text" value={Employee_ID} onChange={handleEmployee_ID} className='floatright'/>
+              
             </div>
-            <div>
-              <label>
+            <div className='form-group'>
+              
 
-                First_name:
-                <input type="text" value={First_name} onChange={handleFirst_name} />
-              </label>
+                <div className='floatleft'>First_name:</div>
+                <input type="text" value={First_name} onChange={handleFirst_name}  className='floatright'/>
+              
             </div>
-            <div>
-              <label>
+            <div className='form-group'>
+              
 
-                Last_name:
-                <input type="text" value={Last_name} onChange={handleLast_name} />
-              </label>
+              <div className='floatleft'>  Last_name:</div>
+                <input type="text" value={Last_name} onChange={handleLast_name} className='floatright'/>
+              
             </div>
-            <div>
-              <label>
+            <div className='form-group'>
+              
 
-                Middle_Name:
-                <input type="text" value={Middle_Name} onChange={handleMiddle_Name} />
-              </label>
+                <div className='floatleft'>Middle_Name:</div>
+                <input type="text" value={Middle_Name} onChange={handleMiddle_Name} className='floatright'/>
+              
             </div>
-            <div>
-              <label>
+            <div className='form-group'>
+              
 
-                Role:
-                <input type="text" value={Role} onChange={handleRole} />
-              </label>
+                <div className='floatleft'>Role:</div>
+                <input type="text" value={Role} onChange={handleRole} className='floatright'/>
+              
             </div>
-            <div>
-              <label>
+            <div className='form-group'>
+              
 
-                Salary:
-                <input type="text" value={Salary} onChange={handleSalary} />
-              </label>
+               <div className='floatleft'> Salary:</div>
+                <input type="text" value={Salary} onChange={handleSalary} className='floatright'/>
+              
             </div>
-            <div>
-              <label>
+            <div className='form-group'>
+              
 
-                Sex:
-                <input type="text" value={Sex} onChange={handleSex} />
-              </label>
+              <div className='floatleft'>  Sex:</div>
+                <input type="text" value={Sex} onChange={handleSex} className='floatright'/>
+              
             </div>
-            <div>
-              <label>
+            <div className='form-group'>
+              
 
-                Shift:
-                <input type="text" value={Shift} onChange={handleShift} />
-              </label>
+                <div className='floatleft'>Shift:</div>
+                <input type="text" value={Shift} onChange={handleShift} className='floatright'/>
+              
             </div>
             <div><button type="submit">Save</button></div>
           </form>
         ) : null}
 
         {Add ?
-          <form onSubmit={handleSubmitAdd}>
-            <div>Add new Employee:
-              <label>
-                Address:
-                <input type="text" value={Address} onChange={handleAddressAdd} />
-              </label>
+          <form onSubmit={handleSubmitAdd} className='labelAlign'>
+            <div className='Align_label'>Add new Employee:</div>
+              <div className='form-group'>
+                <div className='floatleft'>Address:</div>
+                <input type="text" value={Address} onChange={handleAddressAdd} className='floatright'/>
+              
             </div>
-            <div>
-              <label>
-                Employee_ID:
-                <input type="text" value={Employee_ID} onChange={handleEmployee_IDAdd} />
-              </label>
+            <div className='form-group'>
+              
+              <div className='floatleft'>  Employee_ID:</div>
+                <input type="text" value={Employee_ID} onChange={handleEmployee_IDAdd} className='floatright'/>
+              
             </div>
-            <div>
-              <label>
+            <div className='form-group'>
+              
 
-                First_name:
-                <input type="text" value={First_name} onChange={handleFirst_nameAdd} />
-              </label>
+              <div className='floatleft'>  First_name:</div>
+                <input type="text" value={First_name} onChange={handleFirst_nameAdd} className='floatright'/>
+              
             </div>
-            <div>
-              <label>
+            <div className='form-group'>
+              
 
-                Last_name:
-                <input type="text" value={Last_name} onChange={handleLast_nameAdd} />
-              </label>
+                <div className='floatleft'>Last_name:</div>
+                <input type="text" value={Last_name} onChange={handleLast_nameAdd} className='floatright'/>
+              
             </div>
-            <div>
-              <label>
+            <div className='form-group'>
+              
 
-                Middle_Name:
-                <input type="text" value={Middle_Name} onChange={handleMiddle_NameAdd} />
-              </label>
+              <div className='floatleft'>  Middle_Name:</div>
+                <input type="text" value={Middle_Name} onChange={handleMiddle_NameAdd} className='floatright'/>
+              
             </div>
-            <div>
-              <label>
+            <div className='form-group'>
+              
 
-                Role:
-                <input type="text" value={Role} onChange={handleRoleAdd} />
-              </label>
+              <div className='floatleft'>  Role:</div>
+                <input type="text" value={Role} onChange={handleRoleAdd} className='floatright'/>
+              
             </div>
-            <div>
-              <label>
+            <div className='form-group'>
+              
 
-                Salary:
-                <input type="text" value={Salary} onChange={handleSalaryAdd} />
-              </label>
+              <div className='floatleft'>  Salary:</div>
+                <input type="text" value={Salary} onChange={handleSalaryAdd} className='floatright'/>
+              
             </div>
-            <div>
-              <label>
+            <div className='form-group'>
+              
 
-                Sex:
-                <input type="text" value={Sex} onChange={handleSexAdd} />
-              </label>
+               <div className='floatleft'> Sex:</div>
+                <input type="text" value={Sex} onChange={handleSexAdd} className='floatright'/>
+              
             </div>
-            <div>
-              <label>
+            <div className='form-group'>
+              
 
-                Shift:
-                <input type="text" value={Shift} onChange={handleShiftAdd} />
-              </label>
+              <div className='floatleft'>  Shift:</div>
+                <input type="text" value={Shift} onChange={handleShiftAdd} className='floatright'/>
+              
             </div>
             <div><button type="submit">Save</button></div>
           </form>
