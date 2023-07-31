@@ -80,14 +80,10 @@ const ApronDetails = ({ children }) => {
         });
     
   };
-  const useGetAPI = (event) => {
-    event.preventDefault();
-    axios.get('/getAirportAprons') // The proxy is set to 'http://localhost:5000' in package.json
-      .then(response => setapron(response.data))
-      .catch(error => console.error('Error fetching data', error));
-  }
+  
 
-  const useHandleSaveAdd = () => {
+  const useHandleSaveAdd = (event) => {
+    event.preventDefault();
     const data = {
       "Apron_number": Apron_number,
       "Apron_type": ApronType,
