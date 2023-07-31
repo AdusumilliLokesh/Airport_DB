@@ -480,7 +480,219 @@ app.post('/owns', async (req, res) => {
     res.status(500).json({ error: 'An error occurred while inserting the ownership record.' });
   }
 });
+app.post('/search/airport_apron', async (req, res) => {
+  const { column, value } = req.body;
 
+  try {
+    const connection = await pool.getConnection();
+    let searchQuery = 'SELECT * FROM airport_apron WHERE ';
+
+    const queryParams = [];
+    if (column === 'Apron_number') {
+      searchQuery += 'Apron_number = ?';
+      queryParams.push(parseInt(value));
+    } else if (column === 'Aircraft_Capacity') {
+      const capacityValues = value.split(',').map(Number);
+      searchQuery += 'Aircraft_Capacity IN (?)';
+      queryParams.push(capacityValues);
+    } else if (column === 'Apron_type' || column === 'Apron_status') {
+      searchQuery += `${column} LIKE ?`;
+      queryParams.push(`%${value}%`);
+    } else {
+      connection.release();
+      return res.status(400).json({ error: 'Invalid column name. Please provide a valid column name.' });
+    }
+
+    const [rows] = await connection.query(searchQuery, queryParams);
+    connection.release();
+
+    if (rows.length === 0) {
+      return res.status(404).json({ message: 'No matching records found.' });
+    }
+
+    res.json(rows);
+  } catch (err) {
+    console.error('Error searching airport_apron:', err);
+    res.status(500).json({ error: 'An error occurred while searching the airport_apron table.' });
+  }
+});
+app.post('/search/airplane', async (req, res) => {
+  const { column, value } = req.body;
+
+  try {
+    const connection = await pool.getConnection();
+    let searchQuery = 'SELECT * FROM airplane WHERE ';
+
+    const queryParams = [];
+    if (column === 'Registration_number') {
+      searchQuery += 'Registration_number = ?  ';
+      queryParams.push(parseInt(value));
+    } else if (column === 'Model') {
+      searchQuery += 'Model IN (?)  ';
+      queryParams.push(value);
+    } else if (column === 'Manufacturer') {
+      searchQuery += 'Manufacturer LIKE ?  ';
+      queryParams.push(`%${value}%`);
+    } else if (column === 'Apron_number') {
+      searchQuery += 'Apron_number IN (?)  ';
+      queryParams.push(parseInt(value));
+    } else if (column === 'Maintenance_Status') {
+      searchQuery += 'Maintenance_Status LIKE ?  ';
+      queryParams.push(`%${value}%`);
+    } else if (column === 'Last_Maintenance_Date') {
+      searchQuery += 'Last_Maintenance_Date IN (?)  ';
+      queryParams.push(value);
+    } else {
+      connection.release();
+      return res.status(400).json({ error: 'Invalid column name. Please provide a valid column name.' });
+    }
+
+
+    const [rows] = await connection.query(searchQuery, queryParams);
+    connection.release();
+
+    if (rows.length === 0) {
+      return res.status(404).json({ message: 'No matching records found.' });
+    }
+
+    res.json(rows);
+  } catch (err) {
+    console.error('Error searching airplane:', err);
+    res.status(500).json({ error: 'An error occurred while searching the airplane table.' });
+  }
+});
+
+app.post('/search/typeOfPlane', async (req, res) => {
+  const { column, value } = req.body;
+
+  try {
+    const connection = await pool.getConnection();
+    let searchQuery = 'SELECT * FROM type_of_plane WHERE ';
+
+    const queryParams = [];
+    if (column === 'Model') {
+      searchQuery += 'Model = ?  ';
+      queryParams.push(value);
+    } else if (column === 'Fuel_Capacity') {
+      searchQuery += 'Fuel_Capacity IN (?)  ';
+      queryParams.push(parseInt(value));
+    } else if (column === 'Maximum_Range') {
+      searchQuery += 'Maximum_Range IN (?)  ';
+      queryParams.push(parseInt(value));
+    } else if (column === 'Weight') {
+      searchQuery += 'Weight IN (?)  ';
+      queryParams.push(parseFloat(value));
+    } else if (column === 'Seating_Capacity') {
+      searchQuery += 'Seating_Capacity IN (?)  ';
+      queryParams.push(parseInt(value));
+    } else {
+      connection.release();
+      return res.status(400).json({ error: 'Invalid column name. Please provide a valid column name.' });
+    }
+
+    const [rows] = await connection.query(searchQuery, queryParams);
+    connection.release();
+
+    if (rows.length === 0) {
+      return res.status(404).json({ message: 'No matching records found.' });
+    }
+
+    res.json(rows);
+  } catch (err) {
+    console.error('Error searching type_of_plane:', err);
+    res.status(500).json({ error: 'An error occurred while searching the type_of_plane table.' });
+  }
+});
+app.post('/search/owns', async (req, res) => {
+  const { column, value } = req.body;
+
+  try {
+    const connection = await pool.getConnection();
+    let searchQuery = 'SELECT * FROM owns WHERE ';
+
+    const queryParams = [];
+    if (column === 'owner_id') {
+      searchQuery += 'owner_id IN (?)  ';
+      queryParams.push(parseInt(value));
+    } else if (column === 'Registration_number') {
+      searchQuery += 'Registration_number IN (?)  ';
+      queryParams.push(parseInt(value));
+    } else if (column === 'Purchase_date') {
+      searchQuery += 'Purchase_date IN (?)  ';
+      queryParams.push(value);
+    } else {
+      connection.release();
+      return res.status(400).json({ error: 'Invalid column name. Please provide a valid column name.' });
+    }
+
+
+    const [rows] = await connection.query(searchQuery, queryParams);
+    connection.release();
+
+    if (rows.length === 0) {
+      return res.status(404).json({ message: 'No matching records found.' });
+    }
+
+    res.json(rows);
+  } catch (err) {
+    console.error('Error searching owns:', err);
+    res.status(500).json({ error: 'An error occurred while searching the owns table.' });
+  }
+});
+app.post('/search/employee', async (req, res) => {
+  const { column, value } = req.body;
+
+  try {
+    const connection = await pool.getConnection();
+    let searchQuery = 'SELECT * FROM employee WHERE ';
+
+    const queryParams = [];
+    if (column === 'Employee_ID') {
+      searchQuery += 'Employee_ID = ? ';
+      queryParams.push(parseInt(value));
+    } else if (column === 'First_name') {
+      searchQuery += 'First_name LIKE ? ';
+      queryParams.push(`%${value}%`);
+    } else if (column === 'Middle_Name') {
+      searchQuery += 'Middle_Name LIKE ? ';
+      queryParams.push(`%${value}%`);
+    } else if (column === 'Last_name') {
+      searchQuery += 'Last_name LIKE ? ';
+      queryParams.push(`%${value}%`);
+    } else if (column === 'Salary') {
+      searchQuery += 'Salary IN (?) ';
+      queryParams.push(parseInt(value));
+    } else if (column === 'Sex') {
+      searchQuery += 'Sex IN (?) ';
+      queryParams.push(value);
+    } else if (column === 'Shift') {
+      searchQuery += 'Shift LIKE ? ';
+      queryParams.push(`%${value}%`);
+    } else if (column === 'Address') {
+      searchQuery += 'Address LIKE ? ';
+      queryParams.push(`%${value}%`);
+    } else if (column === 'Role') {
+      searchQuery += 'Role LIKE ?  ';
+      queryParams.push(`%${value}%`);
+    } else {
+      connection.release();
+      return res.status(400).json({ error: 'Invalid column name. Please provide a valid column name.' });
+    }
+
+   
+    const [rows] = await connection.query(searchQuery, queryParams);
+    connection.release();
+
+    if (rows.length === 0) {
+      return res.status(404).json({ message: 'No matching records found.' });
+    }
+
+    res.json(rows);
+  } catch (err) {
+    console.error('Error searching employee:', err);
+    res.status(500).json({ error: 'An error occurred while searching the employee table.' });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
