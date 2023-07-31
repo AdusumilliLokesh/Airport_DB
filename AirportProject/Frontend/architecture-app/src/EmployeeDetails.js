@@ -237,6 +237,50 @@ const EmployeeDetails = ({ children }) => {
  
 
   };
+
+  const [selectedOption, setSelectedOption] = useState('Option 1'); // For storing the selected option in the dropdown
+
+  // Function to handle the dropdown selection
+  const handleDropdownChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+  const [searchBox, setSearchBox] = useState('');
+  // Options for the dropdown
+  const dropdownOptions = ['Address', 'Employee_ID', 'First_name','Last_name','Middle_Name','Role','Salary','Sex','Shift'];
+  const handleSearchChange = (query) => {
+    setSearchBox(query);
+  };
+  const handlePostRequestSearch = (event) => {
+    event.preventDefault();
+    const data = {
+      "column":selectedOption,
+      "value":searchBox
+    };
+    const apiUrl = 'http://localhost:5000/search/employee';
+
+    // Optional: Headers for the request (e.g., if you need to send an authorization token)
+    const headers = {
+      'Content-Type': 'application/json',
+      // Add any other required headers here
+    };
+    
+    // Make the POST request using Axios
+    axios.post(apiUrl, data, { headers })
+      .then((response) => {
+        // Process the response data
+        console.log('Response data:', response.data);
+        setEmployee(response.data);
+      setAdd(false);
+    setEdit(false);
+        // Do something with the data, if needed
+      })
+      .catch((error) => {
+        console.error('Error:', error);
+        // Handle any errors that occurred during the request
+      });
+
+  };
+
   useEffect(() => {
     // Fetch data from the backend when the component mounts
     axios.get('/getEmployee') // The proxy is set to 'http://localhost:5000' in package.json
@@ -254,6 +298,33 @@ const EmployeeDetails = ({ children }) => {
               onClick={() => handleAdd(123)}
               style={{ cursor: 'pointer', marginRight: '10px' }}
             />
+            <div>
+      
+      <form className="dropdown-container">
+        <label htmlFor="dropdown" className="dropdown-label"></label>
+        <select id="dropdown" value={selectedOption} onChange={handleDropdownChange} className="dropdown-select">
+          {dropdownOptions.map((option) => (
+            <option key={option} value={option}>
+              {option}
+            </option>
+          ))}
+        </select>
+        <input
+        className="search-bar-input"
+        type="text"
+        placeholder="Search..."
+        onChange={(e) => handleSearchChange(e.target.value)}
+      />
+      <button onClick={handlePostRequestSearch} className="my-button">
+          Search
+        </button>
+      <div className="search-icon-container">
+        
+      </div>
+        
+      </form>
+      
+    </div>
           </h1>
           <table className="employeeAlign">
             <thead>
